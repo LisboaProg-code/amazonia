@@ -16,29 +16,39 @@ const imagensPag2 = [
     "img/cultura8.jpg"
 ];
 
-const pag1 = document.querySelector(".pag1");
-const pag2 = document.querySelector(".pag2");
+// Cria o slideshow com fade para uma seção
+function criarSlideshow(secao, imagens, intervalo = 5000) {
+    // cria as duas camadas
+    const camadas = [document.createElement("div"), document.createElement("div")];
+    camadas.forEach(c => {
+        c.classList.add("bg-layer");
+        secao.prepend(c);
+    });
 
-let indicePag1 = 0;
-let indicePag2 = 0;
+    // pré-carrega as imagens para evitar "piscadas"
+    imagens.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
 
-function trocarBackground() {
+    let indice = 0;
+    let camadaAtual = 0;
 
-    pag1.style.backgroundImage = `url("${imagensPag1[indicePag1]}")`;
-    pag2.style.backgroundImage = `url("${imagensPag2[indicePag2]}")`;
+    function trocar() {
+        const proxima = camadas[camadaAtual];
+        const anterior = camadas[1 - camadaAtual];
 
-    indicePag1++;
-    indicePag2++;
+        proxima.style.backgroundImage = `url("${imagens[indice]}")`;
+        proxima.classList.add("ativa");
+        anterior.classList.remove("ativa");
 
-    if (indicePag1 >= imagensPag1.length) {
-        indicePag1 = 0;
+        camadaAtual = 1 - camadaAtual;
+        indice = (indice + 1) % imagens.length;
     }
 
-    if (indicePag2 >= imagensPag2.length) {
-        indicePag2 = 0;
-    }
+    trocar();
+    setInterval(trocar, intervalo);
 }
 
-trocarBackground();
-
-setInterval(trocarBackground, 5000);
+criarSlideshow(document.querySelector(".pag1"), imagensPag1);
+criarSlideshow(document.querySelector(".pag2"), imagensPag2);
