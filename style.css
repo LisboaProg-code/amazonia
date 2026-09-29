@@ -20,6 +20,10 @@
 
 :root{
     --verde: #616728;
+    --cor: #062a77;
+    --cor-borda: #093ca9;
+    --branco: white;
+    --texto: black;
 }
 
 body {
@@ -49,7 +53,7 @@ main {
 
 /* pag2 */
 
-.pag2{
+.pag2, .pag6{
     min-height: 100vh;
     width: 100%;
 
@@ -58,6 +62,8 @@ main {
     align-items: center;
 
     font-size: 8rem;
+
+    padding: 500px 0px;
 }
 
 .pag2 h1{
@@ -68,7 +74,8 @@ main {
 }
 
 .pag1,
-.pag2 {
+.pag2,
+.pag6{
     position: relative;
     overflow: hidden;
 }
@@ -93,7 +100,809 @@ main {
 
 /* conteúdo fica acima do fundo */
 .pag1 > *:not(.bg-layer),
-.pag2 > *:not(.bg-layer) {
+.pag2 > *:not(.bg-layer),
+.pag6 > *:not(.bg-layer) {
     position: relative;
     z-index: 1;
 }
+
+.pag3{
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 4rem;
+    padding: 100px 10px;
+}
+
+.pag3 h1{
+    font-family: "Narnia", 'Times New Roman', Times, serif;
+    color: rgba(255, 255, 255, 0.4);
+    -webkit-text-stroke: .5px white;
+    text-shadow: 8px 8px 10px rgb(0, 0, 0, .4);
+    align-self: flex-start;
+    padding-top: 20px;
+}
+
+.pag3 {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(
+        90deg,
+        #7c0c19 0%,
+        #062a77 100%
+    );         /* cor do fundo acima e abaixo das fotos */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Faixa de fotos só no meio da tela */
+.conteiner-carrosel-fotos {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 50vh;              /* altura da faixa: ajuste como quiser */
+  transform: translateY(-50%);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.carrosel-faixa {
+  display: flex;
+  height: 100%;
+  width: max-content;
+  animation: passar 40s linear infinite;
+}
+
+.carrosel-faixa img {
+  height: 100%;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+@keyframes passar {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Título centralizado por cima das fotos */
+.pag3 h1 {
+    position: relative;
+    z-index: 3;
+    font-size: clamp(2rem, 7vw, 6rem);
+    text-align: center;
+    padding: 0 20px;
+
+    font-family: "Narnia", 'Times New Roman', Times, serif;
+    color: white;
+    -webkit-text-stroke: .5px white;
+    text-shadow: 8px 8px 10px rgb(0, 0, 0, .4);
+    margin-top: 50px;
+
+}
+
+/* --pag3-- */
+
+/* pag4 */
+
+/* pag4 */
+
+/* pag4 */
+
+.pag4{
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+
+    background-color: var(--cor);
+    color: var(--texto);
+    transition: background-color .4s ease;
+
+    padding: 20px 10px;
+}
+
+.carrossel{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* setas */
+.seta{
+    width: 48px;
+    height: 48px;
+
+    border: 0;
+    border-radius: 50%;
+    background: var(--branco);
+    color: var(--cor);
+
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: color .4s ease, transform .15s ease;
+}
+
+.seta:hover{
+    transform: scale(1.08);
+}
+
+.seta:focus-visible,
+.botao-mudar:focus-visible,
+.bolinha:focus-visible{
+    outline: 3px solid var(--texto);
+    outline-offset: 3px;
+}
+
+/* card */
+.card{
+    width: min(640px, 70vw);
+
+    background: var(--branco);
+    border: 3px solid var(--cor-borda);
+    border-radius: 22px;
+    overflow: hidden;
+
+    box-shadow: 8px 8px 10px rgb(0, 0, 0, .4);
+    transition: border-color .4s ease;
+}
+
+.foto{
+    height: 640px;
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.textos-card{
+    padding: 16px 18px 20px;
+    text-align: center;
+}
+
+.textos-card h1{
+    font-family: "Narnia", 'Times New Roman', Times, serif;
+    font-size: 2.5rem;
+    color: var(--cor);
+    transition: color .4s ease;
+    margin-bottom: 6px;
+}
+
+.textos-card h2{
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+/* bolinhas */
+.bolinhas{
+    display: flex;
+    gap: 10px;
+}
+
+.bolinha{
+    width: 12px;
+    height: 12px;
+
+    border: 0;
+    border-radius: 50%;
+    background: var(--branco);
+    opacity: .3;
+    cursor: pointer;
+
+    transition: opacity .2s ease, transform .2s ease;
+}
+
+.bolinha.ativa{
+    opacity: 1;
+    transform: scale(1.35);
+}
+
+/* botão coração / estrela */
+.botao-mudar{
+    font-size: 1.8rem;
+    padding: 10px 24px;
+
+    border: 0;
+    border-radius: 999px;
+    background: var(--branco);
+    cursor: pointer;
+
+    box-shadow: 4px 4px 10px rgb(0, 0, 0, .4);
+    transition: transform .15s ease;
+}
+
+
+/* player de toada */
+.player{
+display: none;
+margin: 0 18px 20px;
+padding: 18px 20px 16px;
+
+background: var(--cor);
+color: white;
+border-radius: 18px;
+
+transition: background-color .4s ease;
+}
+
+.player.ativo{
+display: block;
+}
+
+.player .text_msc{
+font-family: 'Poppins', Arial, Helvetica, sans-serif;
+text-align: left;
+padding-bottom: 6px;
+}
+
+.player .text_msc h1{
+font-size: 1.4rem;
+font-weight: 600;
+padding-bottom: 4px;
+}
+
+.player .text_msc h2{
+font-size: 1rem;
+font-weight: 400;
+opacity: .7;
+}
+
+/* barra de progresso */
+.progress-player{
+position: relative;
+padding-top: 15px;
+margin-top: 8px;
+cursor: pointer;
+}
+
+.progress-player::before{
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+
+width: 100%;
+height: 5px;
+
+background-color: rgba(255, 255, 255, 0.25);
+border-radius: 10px;
+}
+
+.progress{
+position: absolute;
+top: 0;
+left: 0;
+
+width: 0%;
+height: 5px;
+
+background-color: white;
+border-radius: 10px;
+
+transition: width .1s linear;
+}
+
+.music-duraction{
+display: flex;
+justify-content: space-between;
+
+font-size: .8rem;
+color: rgba(255, 255, 255, 0.7);
+margin-top: 5px;
+}
+
+/* controles */
+.controls{
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 30px;
+margin-top: 8px;
+}
+
+.controls i{
+color: white;
+cursor: pointer;
+transition: transform .2s ease;
+}
+
+.controls i:hover{
+transform: scale(1.1);
+}
+
+.controls .ri-play-circle-fill,
+.controls .ri-pause-circle-fill{
+font-size: 4rem;
+}
+
+.controls .ri-skip-back-line,
+.controls .ri-skip-forward-line{
+font-size: 2.2rem;
+}
+
+/* animação ao trocar de música */
+.text_msc,
+.progress-player{
+transition: opacity .4s ease, transform .4s ease;
+}
+
+.trocando-musica{
+opacity: 0;
+transform: translateY(10px);
+}
+
+
+
+/* --pag4-- */
+
+/* pag5 */
+
+.pag5{
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 6rem;
+
+    background-color: black;
+    padding: 500px 0px;
+}
+
+.pag5 h1{
+    font-family: "Poppins", 'Times New Roman', Times, serif;
+    color: white;
+    -webkit-text-stroke: .5px white;
+    text-shadow: 8px 8px 10px rgb(255, 255, 255, .4);
+}
+
+/* --pag5-- */
+
+/* pag6 */
+
+.pag6 h1{
+    color: white;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.7);
+    
+}
+
+/* --pag6-- */
+
+/* pag7 */
+
+
+.pag7{
+    height: 100vh;
+    width: 100%;
+
+    display: flex;
+    gap: 12px;
+
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 150px 20px;
+}
+
+.foto-item{
+    flex: 1;
+    min-height: 0;
+
+    
+    padding: 0;
+    border: 3px solid white;
+    border-radius: 22px;
+    overflow: hidden;
+
+    cursor: pointer;
+
+    box-shadow: 8px 8px 10px rgb(0, 0, 0, .4);
+    transition: flex .6s ease, opacity .6s ease, filter .6s ease;
+}
+
+.foto-item img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.foto-item:focus-visible{
+    outline: 3px solid black;
+    outline-offset: 3px;
+}
+
+/* imagem em foco cresce */
+.foto-item.foco{
+    flex: 5;
+    object-fit: cover;
+}
+
+/* as outras ficam apagadas enquanto houver foco */
+.pag7.tem-foco .foto-item:not(.foco){
+    opacity: .5;
+    filter: brightness(.6);
+    object-fit: cover;
+}
+
+/* celular: empilha na vertical */
+@media (max-width: 700px){
+  .pag7{
+  flex-direction: column;
+  }
+}
+
+/* --pag7-- */
+
+/* pag8 */
+
+/* pag8 */
+
+.pag8{
+min-height: 100vh;
+width: 100%;
+
+display: grid;
+grid-template-columns: 1fr 450px 1fr;
+align-items: center;
+column-gap: 40px;
+
+padding: 20px;
+background-color: #062a77;
+color: white;
+
+transition: background-color .8s ease;
+}
+
+/* player (coluna do meio) */
+.p8-conteiner-musica{
+grid-column: 2;
+width: 450px;
+padding: 20px 25px 30px;
+
+background: rgba(0, 0, 0, 0.35);
+border-radius: 35px;
+
+display: flex;
+flex-direction: column;
+align-items: center;
+
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+
+box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.p8-capa{
+width: 100%;
+aspect-ratio: 1 / 1;
+
+background-color: black;
+background-size: cover;
+background-position: center;
+
+border-radius: 20px;
+overflow: hidden;
+}
+
+.p8-titulo{
+width: 100%;
+padding: 22px 0 18px;
+}
+
+.p8-texto{
+font-family: "Inter", Arial, sans-serif;
+}
+
+.p8-texto h1{
+font-size: 1.6rem;
+font-weight: 600;
+padding-bottom: 5px;
+}
+
+.p8-texto h2{
+font-size: 1rem;
+font-weight: 400;
+opacity: 0.7;
+}
+
+/* barra */
+.p8-progress-player{
+width: 100%;
+position: relative;
+padding-top: 15px;
+cursor: pointer;
+}
+
+.p8-progress-player::before{
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+
+width: 100%;
+height: 5px;
+
+background-color: rgba(255, 255, 255, 0.25);
+border-radius: 10px;
+}
+
+.p8-progress{
+position: absolute;
+top: 0;
+left: 0;
+
+width: 0%;
+height: 5px;
+
+background-color: white;
+border-radius: 10px;
+
+transition: width 0.1s linear;
+}
+
+.p8-duracao{
+width: 100%;
+display: flex;
+justify-content: space-between;
+
+color: rgba(255, 255, 255, 0.55);
+font-size: 0.8rem;
+margin-top: 5px;
+}
+
+/* controles */
+.p8-controls{
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 30px;
+}
+
+.p8-controls i{
+cursor: pointer;
+transition: transform 0.2s ease;
+}
+
+.p8-controls i:hover{
+transform: scale(1.1);
+}
+
+.p8-controls .ri-play-circle-fill,
+.p8-controls .ri-pause-circle-fill{
+font-size: 4.5rem;
+}
+
+.p8-controls .ri-skip-back-line,
+.p8-controls .ri-skip-forward-line{
+font-size: 2.5rem;
+}
+
+/* animação ao trocar de música */
+.p8-capa,
+.p8-texto,
+.p8-progress-player,
+.p8-letra blockquote,
+.p8-letra p{
+transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.p8-trocando{
+opacity: 0;
+transform: translateY(10px);
+}
+
+/* bloco da letra (coluna da direita) */
+.p8-letra{
+grid-column: 3;
+max-width: 420px;
+padding: 25px 28px;
+
+background: rgba(0, 0, 0, 0.35);
+border-radius: 25px;
+
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+
+box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+font-family: "Inter", Arial, sans-serif;
+}
+
+.p8-letra h3{
+font-size: 1rem;
+font-weight: 600;
+opacity: .7;
+margin-bottom: 8px;
+}
+
+.p8-letra blockquote{
+font-size: 1.3rem;
+line-height: 1.5;
+font-style: italic;
+
+padding-left: 16px;
+border-left: 3px solid white;
+margin-bottom: 24px;
+}
+
+.p8-letra p{
+font-size: 1rem;
+line-height: 1.6;
+}
+
+/* tablet e celular: tudo empilhado */
+@media (max-width: 1000px){
+  .pag8{
+  grid-template-columns: 1fr;
+  justify-items: center;
+  row-gap: 24px;
+  }
+
+  .p8-conteiner-musica,
+  .p8-letra{
+  grid-column: 1;
+  width: min(450px, 100%);
+  }
+}
+
+/* --pag8-- */
+
+/* pag9 */
+
+.pag9{
+min-height: 100vh;
+width: 100%;
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 20px;
+
+padding: 20px;
+background: linear-gradient(90deg, #7c0c19 0%, #062a77 100%);
+}
+
+.video-caixa{
+width: min(1300px, 100%);
+aspect-ratio: 16 / 9;
+
+border: 3px solid white;
+border-radius: 22px;
+overflow: hidden;
+
+background: black;
+box-shadow: 8px 8px 10px rgb(0, 0, 0, .4);
+}
+
+.video-caixa iframe{
+width: 100%;
+height: 100%;
+display: block;
+border: 0;
+}
+
+/* miniaturas */
+.video-lista{
+width: min(1000px, 100%);
+
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 12px;
+}
+
+.video-mini{
+width: 160px;
+padding: 0;
+
+border: 3px solid transparent;
+border-radius: 14px;
+overflow: hidden;
+
+background: black;
+cursor: pointer;
+
+opacity: .6;
+box-shadow: 4px 4px 10px rgb(0, 0, 0, .4);
+transition: opacity .3s ease, border-color .3s ease, transform .2s ease;
+}
+
+.video-mini img{
+width: 100%;
+aspect-ratio: 16 / 9;
+object-fit: cover;
+display: block;
+}
+
+.video-mini:hover{
+opacity: 1;
+transform: scale(1.04);
+}
+
+.video-mini.ativo{
+opacity: 1;
+border-color: white;
+}
+
+.video-mini:focus-visible{
+outline: 3px solid black;
+outline-offset: 3px;
+}
+
+/* --pag9-- */
+
+/* pag10 */
+
+.pag10{
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+
+    font-size: 3rem;
+    background: linear-gradient(90deg, #7c0c19 0%, #062a77 100%);
+    
+}
+
+.pag10 h1{
+    color: #d4d4d4;
+    font-family: "Narnia",'Times New Roman', Times, serif;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transform: translateY(-100%);
+}
+
+/* --pag10-- */
+
+/* footer */
+
+/* footer */
+
+.rodape{
+    width: 100%;
+    padding: 24px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    background: linear-gradient(90deg, #7c0c19 0%, #062a77 100%);
+    color: white;
+    text-align: center;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    font-size: .9rem;
+    border-top: solid 2px white ;
+}
+
+.rodape p{
+    color: rgba(255, 255, 255, .85);
+}
+
+/* --footer-- */
