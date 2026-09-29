@@ -499,7 +499,9 @@ transform: translateY(10px);
     display: flex;
     gap: 12px;
 
-    background-color: white;
+    background-image: url(img/queimada.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -753,6 +755,29 @@ font-size: 1rem;
 line-height: 1.6;
 }
 
+/* letra em cascata */
+.p8-linha{
+display: block;
+opacity: 0;
+transform: translateY(8px);
+animation: p8-cascata .6s ease forwards;
+}
+
+@keyframes p8-cascata{
+  to{
+  opacity: 1;
+  transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .p8-linha{
+  animation: none;
+  opacity: 1;
+  transform: none;
+  }
+}
+
 /* tablet e celular: tudo empilhado */
 @media (max-width: 1000px){
   .pag8{
@@ -868,6 +893,9 @@ outline-offset: 3px;
 
     font-size: 3rem;
     background: linear-gradient(90deg, #7c0c19 0%, #062a77 100%);
+    background-image: url(img/norteNordeste.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
     
 }
 

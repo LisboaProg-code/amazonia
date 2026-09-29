@@ -15,7 +15,8 @@ const imagensPag2 = [
   "img/cultura5.jpg",
   "img/cultura6.jpg",
   "img/cultura7.jpg",
-  "img/cultura8.jpg"
+  "img/cultura8.jpg",
+  "img/norteNordeste.jpeg"
 ];
 
 const imagensPag6 = [
@@ -446,8 +447,6 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") limparFoco();
 });
 
-/* pag8 */
-
 /* ===== pag8: player + letra ===== */
 
 (() => {
@@ -470,7 +469,6 @@ document.addEventListener("keydown", (e) => {
   const capa = document.getElementById("p8-capa");
 
   const trechoEl = document.getElementById("p8-trecho");
-  const comentarioEl = document.getElementById("p8-comentario");
 
   const musicas = [
     {
@@ -478,8 +476,21 @@ document.addEventListener("keydown", (e) => {
       cantor: "Boi Garantido",
       audio: "audio/lamento.mp3",
       capa: "img/toadaGara.jpeg",
-      cor: "#7c0c19", /* 062a77 */
-      trecho: "O índio chorou, o branco chorou. Todo mundo está chorando. A Amazônia está queimando. Ai, ai, que dor. Ai, ai, que horror. Lá se vai a saracura correndo dessa quentura. E não vai mais voltar. Lá se vai onça pintada fugindo dessa queimada. E não vai mais voltar"
+      cor: "#7c0c19",
+      trecho: `O índio chorou
+O branco chorou
+Todo mundo está chorando
+A amazônia está queimando
+Ai, ai, que dor
+Ai, ai, que horror
+
+Lá se vai a saracura correndo dessa quentura
+E não vai mais voltar
+Lá se vai onça-pintada fugindo dessa queimada
+E não vai mais voltar
+Lá se vai a macacada junto com a passarada
+Para nunca mais voltar
+Para nunca mais, nunca mais voltar`
     },
     {
       nome: "Amazônia de Pé",
@@ -487,8 +498,12 @@ document.addEventListener("keydown", (e) => {
       audio: "audio/AmazoniadePe.mp3",
       capa: "img/toadaCapri.jpeg",
       cor: "#062a77",
-      trecho: "Trecho da letra que você vai comentar",
-      comentario: "Seu comentário sobre o trecho"
+      trecho: `A cobra grande agoniza no Sol escaldante
+E o curumim caminha há mais de uma hora em busca de água
+A fumaça acinzenta o céu
+E a única fonte de água são as lágrimas ao ver sem nada o espinhel
+A ganância te envenenará
+E o meu Boi Caprichoso agora é bandeira, é povo fazendo a luta ecoar`
     },
     {
       nome: "A vida depende da vida",
@@ -496,8 +511,15 @@ document.addEventListener("keydown", (e) => {
       audio: "audio/AvidaDepende.mp3",
       capa: "img/toadaGara.jpeg",
       cor: "#7c0c19",
-      trecho: "Trecho da letra que você vai comentar",
-      comentario: "Seu comentário sobre o trecho"
+      trecho: `Não deixe o meu rio secar
+Agonizar e morrer
+O que será deste mundo
+Se o rio e a mata desaparecer
+
+Não eu não vou devastar
+Meu filho precisa crescer
+A Vida Depende Da Vida
+Pra sobreviver`
     },
     {
       nome: "Terra: Nosso corpo, Nosso espírito",
@@ -505,22 +527,43 @@ document.addEventListener("keydown", (e) => {
       audio: "audio/terranosso.mp3",
       capa: "img/toadaCapri.jpeg",
       cor: "#062a77",
-      trecho: "Trecho da letra que você vai comentar",
-      comentario: "Seu comentário sobre o trecho"
-    },
+      trecho: `Nossa terra está doente
+Enfermidade recorrente
+E junto adoece a fauna e a flora
+A cosmologia, o mito dos povos tradicionais
+Herança dos nossos ancestrais
+Virando pó pelo poder da ganância
+A procura de minerais
 
+Terra mãe, no colo de mãe
+Tem cura de mãe
+Perder nossa terra
+É perder nossa mãe`
+    }
   ];
 
   let musicaAtual = 0;
+
+  function mostrarTrecho(texto) {
+  trechoEl.innerHTML = "";
+
+  (texto || "Cole aqui o trecho da letra.")
+    .split("\n")
+    .forEach((linha, i) => {
+      const span = document.createElement("span");
+      span.className = "p8-linha";
+      span.textContent = linha;
+      span.style.animationDelay = `${i * 0.35}s`;
+      trechoEl.appendChild(span);
+    });
+}
 
   function carregarMusica(index) {
     const musica = musicas[index];
 
     musicName.textContent = musica.nome;
     musicArtist.textContent = musica.cantor;
-
-    trechoEl.textContent = musica.trecho || "Cole aqui o trecho da letra.";
-    comentarioEl.textContent = musica.comentario || "Escreva aqui o seu comentário.";
+    mostrarTrecho(musica.trecho);
 
     audio.src = musica.audio;
 
@@ -585,7 +628,7 @@ document.addEventListener("keydown", (e) => {
   });
 
   async function trocarMusica(index) {
-    const elementos = [capa, musicName, musicArtist, progressContainer, trechoEl, comentarioEl];
+    const elementos = [capa, musicName, musicArtist, progressContainer, trechoEl];
 
     elementos.forEach(el => el.classList.add("p8-trocando"));
     await new Promise(resolve => setTimeout(resolve, 400));
@@ -617,14 +660,6 @@ document.addEventListener("keydown", (e) => {
 
 /* ===== pag9: pausar vídeo ao sair da tela ===== */
 
-const videoPag9 = document.getElementById("video-pag9");
-
-new IntersectionObserver((entradas) => {
-  entradas.forEach(e => {
-    if (!e.isIntersecting) videoPag9.pause();
-  });
-}, { threshold: 0.3 }).observe(document.getElementById("pag9"));
-
 /* ===== pag9: vários vídeos ===== */
 
 (() => {
@@ -633,7 +668,6 @@ new IntersectionObserver((entradas) => {
   const videos = [
     { id: "0xjZyBOSgsI", titulo: "Vídeo 1" },
     { id: "2X6gwbS4REI", titulo: "Vídeo 2" },
-    { id: "Jm9rbEKM9vo", titulo: "Vídeo 3" }
   ];
 
   const player = document.getElementById("video-principal");
